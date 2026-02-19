@@ -27,42 +27,49 @@ const Contact = () => {
 
                 </div>
                 <div className="contact-form-wrapper">
-                    {submitted ? (
-                        <div className="success-message" style={{ textAlign: 'center', padding: '40px', background: '#151515', borderRadius: '8px' }}>
-                            <i className="fas fa-check-circle" style={{ fontSize: '3rem', color: '#4caf50', marginBottom: '20px' }}></i>
-                            <h3>Message Sent!</h3>
-                            <p>Thank you for contacting us. We will get back to you shortly.</p>
-                            <button className="btn btn-outline" onClick={() => setSubmitted(false)} style={{ marginTop: '20px' }}>Send Another</button>
+                    {/* Hidden iframe for silent submission */}
+                    <iframe name="hidden_iframe" id="hidden_iframe" style={{ display: 'none' }} onLoad={() => { if (submitted) { } }}></iframe>
+
+                    <form
+                        className="contact-form"
+                        action="https://docs.google.com/forms/u/0/d/1lilVVVBOfDr_9nodMrZ8chP-GrrVbeF97eFaOf3UwCM/formResponse"
+                        method="POST"
+                        target="hidden_iframe"
+                        onSubmit={handleSubmit}
+                    >
+                        <div className="form-group">
+                            <input type="text" name="entry.2005620554" id="name" required placeholder=" " />
+                            <label htmlFor="name">Your Name</label>
                         </div>
-                    ) : (
-                        <React.Fragment>
-                            <iframe name="hidden_iframe" id="hidden_iframe" style={{ display: 'none' }}></iframe>
-                            <form
-                                className="contact-form"
-                                action="https://docs.google.com/forms/u/0/d/e/1FAIpQLScSyoyjob7L8kAS6_wb6mtRHqbcZdFwO1UUn9QUPFZkpOXjNQ/formResponse"
-                                method="POST"
-                                target="hidden_iframe"
-                                onSubmit={handleSubmit}
-                            >
-                                <div className="form-group">
-                                    <input type="text" name="entry.2005620554" id="name" required placeholder=" " />
-                                    <label htmlFor="name">Your Name</label>
-                                </div>
-                                <div className="form-group">
-                                    <input type="email" name="entry.1045781291" id="email" required placeholder=" " />
-                                    <label htmlFor="email">Email Address</label>
-                                </div>
-                                <div className="form-group">
-                                    <input type="tel" name="entry.1166974658" id="phone" required placeholder=" " />
-                                    <label htmlFor="phone">Phone Number</label>
-                                </div>
-                                <div className="form-group">
-                                    <textarea name="entry.839337160" id="message" rows="4" required placeholder=" "></textarea>
-                                    <label htmlFor="message">Message</label>
-                                </div>
-                                <button type="submit" className="btn btn-primary block">Send Message</button>
-                            </form>
-                        </React.Fragment>
+                        <div className="form-group">
+                            <input type="email" name="entry.1045781291" id="email" required placeholder=" " />
+                            <label htmlFor="email">Email Address</label>
+                        </div>
+                        <div className="form-group">
+                            <input type="tel" name="entry.1166974658" id="phone" required placeholder=" " />
+                            <label htmlFor="phone">Phone Number</label>
+                        </div>
+                        <div className="form-group">
+                            <textarea name="entry.839337160" id="message" rows="4" required placeholder=" "></textarea>
+                            <label htmlFor="message">Message</label>
+                        </div>
+                        <button type="submit" className="btn btn-primary block">Send Message</button>
+                    </form>
+
+                    {/* Success Popup */}
+                    {submitted && (
+                        <div className="popup-overlay">
+                            <div className="popup-content">
+                                <i className="fas fa-check-circle popup-icon"></i>
+                                <h3>Message Sent!</h3>
+                                <p>Thank you for contacting us. We will get back to you shortly.</p>
+                                <button className="btn btn-primary popup-btn" onClick={() => {
+                                    setSubmitted(false);
+                                    // Optional: Reset form fields if needed, but handled by native form usually or requires ref
+                                    document.querySelector('.contact-form').reset();
+                                }}>Close</button>
+                            </div>
+                        </div>
                     )}
                 </div>
             </div>

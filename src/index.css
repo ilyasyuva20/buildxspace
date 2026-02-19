@@ -551,6 +551,7 @@ ul {
     font-size: 2.5rem;
   }
 }
+
 /* Hero Carousel */
 .hero-carousel {
   position: relative;
@@ -586,7 +587,8 @@ ul {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* Darker overlay for text readability */
+  background: rgba(0, 0, 0, 0.5);
+  /* Darker overlay for text readability */
   z-index: 1;
 }
 
@@ -604,7 +606,7 @@ ul {
   color: #fff;
   text-transform: uppercase;
   letter-spacing: 2px;
-  text-shadow: 2px 2px 10px rgba(0,0,0,0.7);
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
 }
 
 .hero-desc {
@@ -620,6 +622,7 @@ ul {
     opacity: 0;
     transform: translateY(30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -627,8 +630,13 @@ ul {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 .animate-slide-up {
@@ -636,7 +644,8 @@ ul {
 }
 
 .animate-slide-up-delay {
-  opacity: 0; /* Start hidden */
+  opacity: 0;
+  /* Start hidden */
   animation: slideUp 0.8s ease-out 0.3s forwards;
 }
 
@@ -671,8 +680,13 @@ ul {
 }
 
 @media (max-width: 768px) {
-    .hero-title { font-size: 2rem; }
-    .hero-desc { font-size: 1.1rem; }
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .hero-desc {
+    font-size: 1.1rem;
+  }
 }
 
 /* Floating Actions */
@@ -687,7 +701,8 @@ ul {
   align-items: center;
 }
 
-.social-action, .scroll-top {
+.social-action,
+.scroll-top {
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -703,16 +718,27 @@ ul {
   text-decoration: none;
 }
 
-.social-action:hover, .scroll-top:hover {
+.social-action:hover,
+.scroll-top:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
 }
 
-.instagram { background: #E1306C; } /* Instagram Gradient-ish fallback */
-.facebook { background: #1877F2; }
-.whatsapp { background: #25D366; }
-.scroll-top { 
-  background: var(--accent-color); 
+.instagram {
+  background: #E1306C;
+}
+
+/* Instagram Gradient-ish fallback */
+.facebook {
+  background: #1877F2;
+}
+
+.whatsapp {
+  background: #25D366;
+}
+
+.scroll-top {
+  background: var(--accent-color);
   color: var(--secondary-color);
   opacity: 0;
   visibility: hidden;
@@ -733,4 +759,60 @@ ul {
   border: 3px solid var(--accent-color);
   object-fit: cover;
   display: block;
+}
+
+/* Contact Popup Modal */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.popup-content {
+  background: #1a1a1a;
+  padding: 40px;
+  border-radius: 12px;
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+  border: 1px solid var(--accent-color);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  transform: scale(0.9);
+  animation: scaleUp 0.3s ease-out forwards;
+}
+
+.popup-icon {
+  font-size: 4rem;
+  color: #4caf50;
+  margin-bottom: 20px;
+}
+
+.popup-content h3 {
+  color: var(--accent-color);
+  margin-bottom: 15px;
+  font-size: 1.8rem;
+}
+
+.popup-content p {
+  color: #ccc;
+  margin-bottom: 25px;
+}
+
+.popup-btn {
+  padding: 10px 30px;
+  font-size: 1rem;
+}
+
+@keyframes scaleUp {
+  to {
+    transform: scale(1);
+  }
 }
